@@ -5,11 +5,11 @@ const inputMatrix =["01111", "01101", "00011", "11110"];
 
 console.log(
   "Total number of contiguous regions of 0 (holes):",
-  countConsecutiveZeros(inputMatrix)
+  bitmapHoles(inputMatrix)
 );
 
-function countConsecutiveZeros(inputArray) {
-  const totalArrayLength = inputArray.length;
+function bitmapHoles(strArr) {
+  const totalArrayLength = strArr.length;
 
   //terminating funtion execution if it is empty array
   if (!totalArrayLength) {
@@ -17,14 +17,14 @@ function countConsecutiveZeros(inputArray) {
   }
 
   //counting length of child inside array
-  const stringLength = totalArrayLength > 0 ? inputArray[0].length : 0;
+  const stringLength = totalArrayLength > 0 ? strArr[0].length : 0;
 
   let holesCount = 0;
 
   //performing nested loop for every value in array
   for (let i = 0; i < totalArrayLength; i++) {
     for (let j = 0; j < stringLength; j++) {
-      if (inputArray[i][j] === "0") {
+      if (strArr[i][j] === "0") {
         holesCount++;
         dfs(i, j);
       }
@@ -39,7 +39,7 @@ function countConsecutiveZeros(inputArray) {
       stringIndex < 0 ||
       arrayIndex >= totalArrayLength ||
       stringIndex >= stringLength ||
-      inputArray[arrayIndex][stringIndex] !== "0"
+      strArr[arrayIndex][stringIndex] !== "0"
     ) {
       return;
     }
@@ -50,12 +50,12 @@ function countConsecutiveZeros(inputArray) {
       if (i === stringIndex) {
         updatedArrayItem += "1";
       } else {
-        updatedArrayItem += inputArray[arrayIndex][i];
+        updatedArrayItem += strArr[arrayIndex][i];
       }
     }
 
     //updating array
-    inputArray[arrayIndex] = updatedArrayItem;
+    strArr[arrayIndex] = updatedArrayItem;
 
     // Performing Depth First Search in all four directions
     dfs(arrayIndex + 1, stringIndex); // down
