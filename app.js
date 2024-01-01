@@ -9,11 +9,11 @@ console.log(
 );
 
 function bitmapHoles(strArr) {
-  const totalArrayLength = strArr.length;
+  const totalArrayLength = strArr?.length;
 
   //terminating funtion execution if it is empty array
   if (!totalArrayLength) {
-    return "Input array is empty";
+    return "Input array should not be empty";
   }
 
   //counting length of child inside array
